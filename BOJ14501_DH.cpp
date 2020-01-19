@@ -17,9 +17,9 @@ int solve(int day){
     ret = p[day];
     int temp = ret;
 
-    for(int i=day+t[day]; i<=n; i++){
+    for(int i=day+t[day]; i<=n; i++)
         temp = max(temp, ret + solve(i));
-    }
+        
     ret = temp;
     
     ans = max(ans, ret);
@@ -34,8 +34,5 @@ int main(){
     }
     for(int i=1; i<=n; i++) solve(i);
         cout << ans;
-    //for(int i=1; i<=n; i++) 
-    //    cout << "solve(" << i << ")" << solve(i) << '\n';
-    
     return 0;
 }
