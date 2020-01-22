@@ -4,3 +4,9 @@ we started algorithm Problem solving from Baekjoon Online Judge https://www.acmi
 
 file nameing- "BOJ" + "Problem Number" + "name"
 ex)BOJ1753_JH , BOJ1753_DH
+
+##study rull
+
+1. 문제선정 - 백준에서 각 2문제씩 총 6문제 선정
+
+2. 기간 - 차주 문제선정 및 제출 : 금요일 12:00까지
