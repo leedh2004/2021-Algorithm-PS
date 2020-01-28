@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cstring>
+#include<cstdlib>
 
 using namespace std;
 
@@ -20,13 +21,16 @@ void dust()
     int b,a,x,y;
     b=v;
     a=v?0:1;
+    //after table 초기화
     memset(arr[a],0,sizeof(arr[a]));
+    //현재 table을 aftertable을 가르키게 해줌
     v=v?0:1;
     for(int i=1;i<=r;i++)
     {
         for(int j=1;j<=c;j++) 
         {
             if(arr[b][i][j]==0) continue;
+            //과거에 확산되었을 수도 있기 때문에 : 현재 미세먼지값 = 현재 미세먼지값 + 과거 미세먼지값
             arr[a][i][j]=arr[a][i][j]+arr[b][i][j];
             for(int k=0;k<4;k++)
             {
@@ -41,34 +45,21 @@ void dust()
             }
         }
     } 
+    //공기청정기 미세먼지 0으로 초기화
     arr[a][a_x-1][a_y]=0;
     arr[a][a_x][a_y]=0;
 }
 
-void p(int x)
-{
-    cout<<"----"<<x<<"--------------\n";
-    for(int i=1;i<=r;i++)
-    {
-        for(int j=1;j<=c;j++) 
-        {
-            cout<<arr[v][i][j]<<"\t";
-        }
-        cout<<"\n";
-    } 
-}
 
 void mashine()
 {
     int b,a;
     b=v;
     a=v?0:1;
-    //memset(arr[a],0,sizeof(arr[a]));
     v=v?0:1;
-    for(int i=1;i<=r;i++)
-    {
-        for(int j=1;j<=c;j++) arr[a][i][j]=arr[b][i][j];
-    }
+    memcpy(arr[a],arr[b],sizeof(arr[a]));
+
+    //행 이동
     for(int j=1;j<c;j++)
     {
         arr[a][a_x-1][j+1]= arr[b][a_x-1][j];
@@ -76,16 +67,19 @@ void mashine()
         arr[a][1][c-j]=arr[b][1][c-j+1];
         arr[a][r][c-j]=arr[b][r][c-j+1];
     }
+    //위쪽 열 이동
     for(int i=1;i<=a_x-2;i++)
     {
         arr[a][i+1][1]=arr[b][i][1];
         arr[a][a_x-i-1][c]=arr[b][a_x-i][c];
     }
+    //아래쪽 열 이동
     for(int i=r;i>a_x;i--)
     {
         arr[a][i-1][1]=arr[b][i][1];
         arr[a][a_x+1+(r-i)][c]=arr[b][a_x+(r-i)][c];
     }
+    //공기청정기 미세먼지 0으로 초기화
     arr[a][a_x-1][a_y]=0;
     arr[a][a_x][a_y]=0;
 }
@@ -122,9 +116,7 @@ int main()
     for(int i=0;i<t;i++)
     {
         dust();
-        //p(i);
         mashine();
-        //p(i);
     }
     cout<<count();
     return 0;

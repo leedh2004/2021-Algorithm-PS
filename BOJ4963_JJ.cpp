@@ -46,15 +46,13 @@ int main()
     while(1)
     {
         cin>>w>>h;
+        //입력이 0,0일때 종료
         if((w==0)&&(h==0)) break;
         for(int i=1;i<=h;i++)
         {
-            for(int j=1;j<=w;j++) 
-            {
-                cin>>arr[i][j];
-                //cout<<arr[i][j];
-            }
+            for(int j=1;j<=w;j++) cin>>arr[i][j];
         }
+        //ck테이블 초기화 -1 : 방문x 
         memset(ck,-1,sizeof(ck));
         n=0;
         for(int i=1;i<=h;i++)
@@ -63,6 +61,7 @@ int main()
             {
                 if(ck[i][j]==-1&&arr[i][j]==1)
                 {
+                    //bfs로 연결된 섬 파악
                     bfs(i,j);
                     n++;
                 }
