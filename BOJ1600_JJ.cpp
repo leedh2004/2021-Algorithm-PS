@@ -18,8 +18,8 @@ p tmp;
 
 queue<p> q;
 
-int d_n[4][2]={{1,0},{0,1},{-1,0},{0,-1}};
-int d_h[8][2]={{2,1},{1,2},{-1,2},{-2,1},{1,-2},{2,-1},{-2,-1},{-1,-2}};
+int d_n[4][2]={{1,0},{0,1},{-1,0},{0,-1}}; //원숭이의 움직임
+int d_h[8][2]={{2,1},{1,2},{-1,2},{-2,1},{1,-2},{2,-1},{-2,-1},{-1,-2}}; //말의 움직임
 
 int is_in(int x,int y)
 {
@@ -41,32 +41,32 @@ int bfs()
             tmp=q.front();
             //cout<<tmp.x<<" "<<tmp.y<<"\n";
             q.pop();
+            //원숭이 움직임 bfs
             for(int j=0;j<4;j++)
             {
                 x=tmp.x+d_n[j][0];
                 y=tmp.y+d_n[j][1];
                 if(is_in(x,y)&&arr[x][y]==0&&ck[x][y][tmp.nk]==-1)
                 {
-                    if(x==h&&y==w) return m_n;
+                    if(x==h&&y==w) return m_n;//목표지점 도달
                     q.push({x,y,tmp.nk});
                     ck[x][y][tmp.nk]=1;
                 }
             }
+            //말의 움직임 bfs
             for(int j=0;j<8;j++)
             {
                 x=tmp.x+d_h[j][0];
                 y=tmp.y+d_h[j][1];
                 if(is_in(x,y)&&arr[x][y]==0&&ck[x][y][tmp.nk+1]==-1&&tmp.nk+1<=k)
                 {
-                    if(x==h&&y==w) return m_n;
+                    if(x==h&&y==w) return m_n; //목표지점 도달
                     q.push({x,y,tmp.nk+1});
                     ck[x][y][tmp.nk+1]=1;
                 }
             }
         }
     }
-
-
     return -1;
 }
 
