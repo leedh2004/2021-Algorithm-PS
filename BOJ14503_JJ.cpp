@@ -30,7 +30,6 @@ int main()
         if(arr[now.first][now.second]==0) 
         {
             arr[now.first][now.second]==-1;
-            size++;
         }
         int tmp=0;
         for(int i=1;i<=4;i++)
@@ -55,6 +54,5 @@ int main()
         }
         if(arr[now.first+four_d[back][0]][now.first+four_d[back][1]]==1) break; 
     }
-    cout<<size;
     return 0;
 }

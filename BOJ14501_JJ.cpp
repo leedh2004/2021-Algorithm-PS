@@ -9,7 +9,7 @@ pair<int,int> p[16];
 int f_day[16];
 int ck[16]={0};
 
-int dp[16]={0};
+int dp[16]={0}; // dp[i] i번째날에서 cost의 최대값
 
 void dpdp()
 {
