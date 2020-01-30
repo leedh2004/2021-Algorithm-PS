@@ -13,15 +13,6 @@ shark b[105][105];
 int dy[4] = {-1, 1, 0, 0};
 int dx[4] = {0, 0, 1, -1};
 
-void print(){
-    for(int i=1; i<=R; i++){
-        for(int j=1; j<=C; j++){
-            cout << b[i][j].z << " ";
-        }
-        cout << endl;
-    }
-}
-
 int main(){
 
     cin >> R >> C >> M;
@@ -39,10 +30,8 @@ int main(){
     }
     
     int ans = 0;
-    print();
 
     for(int cnt=1; cnt<=C; cnt++){ // 낚시왕이 한 칸 씩 움직임
-        cout << cnt << "day==========================\n";
         shark temp[105][105]; //움직인 상어들의 위치
         for(int i=1; i<=R; i++)
             for(int j=1; j<=C; j++)
@@ -50,23 +39,20 @@ int main(){
 
         for(int j=1; j<=R; j++){
             if( b[j][cnt].z ){ // 가까운 상어를 잡는다.
-                cout << b[j][cnt].z << "CATCH\n";
                 ans += b[j][cnt].z;
                 b[j][cnt] = trash;
                 break;
             }
         }
-        print();
 
         // 상어들의 움직임 구현
-        for(int i=1; i<=C; i++){
-            for(int j=1; j<=R; j++){
+        for(int i=1; i<=R; i++){
+            for(int j=1; j<=C; j++){
                 if (b[i][j].z){ // 상어의 존재
                     int r = i; int c = j; int s = b[i][j].s; int d = b[i][j].d; int z = b[i][j].z;
-                    
-                    while(s != 0){ //
+                    while(s >= 0){ //
                         int nr = r + dy[d] * s;
-                        int nc = c + dy[d] * s;
+                        int nc = c + dx[d] * s;
                         if(nr <= 0){ // 북쪽 넘어감
                             s -= r - 1;
                             r = 1;
@@ -89,7 +75,7 @@ int main(){
                         }
                         else{ // 정착함.
                             shark movedshark = { b[i][j].s, d, b[i][j].z };
-                            b[i][j] = trash;
+                            //b[i][j] = trash;
                             if (temp[nr][nc].z){
                                 if(temp[nr][nc].z < movedshark.z)
                                     temp[nr][nc] = movedshark;
@@ -97,7 +83,7 @@ int main(){
                             else{
                                 temp[nr][nc] = movedshark;
                             }
-                            s = 0;
+                            s = -1;
                         }
                     }
                 }
