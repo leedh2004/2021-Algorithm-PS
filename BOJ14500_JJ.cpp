@@ -18,6 +18,7 @@ struct p
     int b_y;
     int sum={0};
 };
+
 queue <p> q;
 p tmp;
 int a,b;
