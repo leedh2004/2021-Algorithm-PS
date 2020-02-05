@@ -53,3 +53,44 @@ int main()
     for(int i=0;i<n-k;i++) printf("%d",arr2[i]);
     return 0;
 }
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <stack>
+
+using namespace std;
+
+int main(){
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    int n, k; // k개 지움
+    cin >> n >> k;
+    stack<char> s;
+    char temp;
+    int cnt = 0;
+    bool end = false;
+    for(int i=0; i<n; i++){ // n-1 개를 넣는다.
+        cin >> temp;
+        while(!s.empty() && !end){
+            if(cnt == k) end = true;
+            else if(s.top() < temp){
+                s.pop();
+                cnt++;
+            }else{
+                s.push(temp);
+                break;
+            }
+        }
+        if(s.empty() || end) s.push(temp);    
+    }
+    vector<char> v;
+
+    while(!s.empty()){
+        v.push_back(s.top());
+        s.pop();
+    }
+    cnt = 0;
+    for(int i=v.size()-1; i>=0 && cnt < n - k; i--, cnt++) cout << v[i];
+    return 0;
+}
