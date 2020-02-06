@@ -18,6 +18,7 @@ int find_distance(p a, p b){
 
 void solve(int cur, vector<p> selected){
     if(cur == chicken.size()+1) return;
+    
     if(selected.size() == m){
         int sum = 0;
         for(int i=0; i<house.size(); i++){
@@ -31,7 +32,6 @@ void solve(int cur, vector<p> selected){
         return;
     }
     solve(cur+1, selected);
-
     selected.push_back(chicken[cur]);
     solve(cur+1, selected); // 이 곳을 선택함
     selected.pop_back();
