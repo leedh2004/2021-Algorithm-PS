@@ -13,12 +13,8 @@ void ans()
 {
     for(int i=h-1;i>0;i--) arr1[i]=arr1[i]+arr1[i+1];
     for(int i=h-1;i>0;i--) arr2[i]=arr2[i]+arr2[i+1];
-    
-    for(int i=1;i<=h;i++) cout<<arr1[i];
-    cout<<"\n";
-    for(int i=1;i<=h;i++) cout<<arr2[h-i+1];
-    cout<<"\n";
-    
+
+
     for(int i=1;i<=h;i++)
     {
         if(m>(arr1[i]+arr2[h-i+1]))
