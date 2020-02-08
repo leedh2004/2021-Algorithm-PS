@@ -123,6 +123,19 @@ pair<int, int> pl;
 int tmp = pl.first;
 int tmp = pl.second;
 
+#include<map>
+//노드기반의 균현 이진트리구조
+//key와 value로 이루어져 key는 중복불가
+map <string, int> m;
+//m[string]으로 int값에 접근가능
+m.insert({string1,inta});
+m.find(key값);          //이터레이터 반환 못찾는 경우 m.end()와 동일한 이터레이터 반환
+m.count(key값);         //갯수반환
+m.clear();              
+m.begin();              //첫번째 원소 참조
+m.end();                //마지막 원소 참조
+
+
 #include<queue>
 queue<int> q;
 q.push(element);
