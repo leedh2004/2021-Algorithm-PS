@@ -26,6 +26,16 @@ god god_arr[1004];
 int n,m;
 int cnt=0;
 
+bool check()
+{
+    int val=god_arr[1].parent;
+    for(int i=2;i<=n;i++)
+    {
+        if(val!=get_parent(i)) return false;
+    }
+    return true;
+}
+
 
 int get_parent(int x)
 {
