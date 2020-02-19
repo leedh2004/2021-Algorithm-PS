@@ -24,7 +24,6 @@ bool compare(const meet &a, const meet &b)
     else return false;
 }
 
-
 int main()
 {
     scanf("%lld %lld",&n,&m);

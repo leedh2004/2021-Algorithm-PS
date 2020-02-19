@@ -10,7 +10,7 @@ typedef long long ll;
 int p[100001];
 pair<ll, ll> arr[100001]; // first: x, second: y
 
-priority_queue<pair<double, pair<int,int> >> pq; // 거리와 좌표를 담는다.
+priority_queue<pair<double, pair<int, int> >> pq; // 거리와 좌표를 담는다.
 
 int getParent(int a){
     if ( p[a] == a ) return a;
