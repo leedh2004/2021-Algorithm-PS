@@ -14,7 +14,7 @@ int get_parent(int x)
     if(parent[x]==x) return x;
     return parent[x]=get_parent(parent[x]);
 }
-
+    
 
 int union_parent(int a, int b)
 {

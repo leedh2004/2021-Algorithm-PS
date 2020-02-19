@@ -11,7 +11,7 @@ def getParent(string):
 def unionParent(string1, string2):
 	a = getParent(string1)
 	b = getParent(string2)
-
+	
 	if a != b:
 		parent[b] = a
 		count[a] += count[b]
