@@ -38,6 +38,7 @@ int main(){
         ten[i] = ten[i-1] * 10;
         ten[i] %= k; // 10의 i승의 모듈러 값 
     }
+    
     dp[0][0] = 1;
     for(int i=0; i < (1 << n); i++){
         for(int j=0; j<k; j++){
