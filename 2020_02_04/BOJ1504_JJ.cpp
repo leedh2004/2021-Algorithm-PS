@@ -1,5 +1,77 @@
 #include <iostream>
 #include <cstdio>
+#include <algorithm>
+#include <queue>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+struct edge
+{
+    int next;
+    int cost;
+};
+vector<edge> v[801];
+int n,E,s,e,c;
+int arr[3]={1,0,0};
+int dist[3][801];
+int INT_MAX=3*800*1000+1;
+
+void solv()
+{
+    int here,there,here_cost,there_cost;
+    for(int k=0;k<3;k++)
+    {
+        dist[k][arr[k]]=0;
+        priority_queue<pair<int,int>> pq;
+        pq.push({0,arr[k]});
+        while(!pq.empty())
+        {
+            here_cost=-pq.top().first;
+            here=pq.top().second;
+            pq.pop();
+            if(dist[k][here]<here_cost) continue;
+            for(int i=0;i<v[here].size();i++)
+            {
+                there=v[here][i].next;
+                there_cost=here_cost+v[here][i].cost;
+                if(dist[k][there]>there_cost)
+                {
+                    dist[k][there]=there_cost;
+                    pq.push({-there_cost,there});
+                }
+            } 
+        }
+    }
+}
+
+int main()
+{   
+    scanf("%d%d",&n,&E);
+    while(E--)
+    {
+        scanf("%d%d%d",&s,&e,&c);
+        v[s].push_back({e,c});
+        v[e].push_back({s,c});
+    }
+    scanf("%d%d",arr+1,arr+2);
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<801;j++) dist[i][j]=3*800*1000+1;
+    }
+    //fill(&dist[0][0],&dist[2][800],3*800*1000+1);
+    solv();
+    int ans = min(dist[0][arr[1]]+dist[1][arr[2]]+dist[2][n],dist[0][arr[2]]+dist[2][arr[1]]+dist[1][n]);
+    printf("%d\n",(ans>=3*800*1000+1)?-1:ans);
+    return 0;
+}
+
+
+/*
+
+#include <iostream>
+#include <cstdio>
 #include <queue>
 #include <cstring>
 #include <algorithm>
@@ -26,19 +98,18 @@ void solv()
         while(!pq.empty())
         {
             //현재 cost가 가장 낮은 노드 선별
-            cost=-pq.top().first;
-            here=pq.top().second;
+            cost = -pq.top().first;
+            here = pq.top().second;
             pq.pop();
             if(dist[i][here]<cost) continue;
             //cout<<arr[i]<<"->"<<now<<" : "<<cost<<" vs "<<dist[i][now]<<"""\n";
-            for(int j=0;j<adj[here].size();j++)
+            for(int j=0; j < adj[here].size() ;j++)
             {
                 there=adj[here][j].first;
                 nextDist= cost + adj[here][j].second;
                 if(dist[i][there]>nextDist);
                 {
-                    //printf("%d->%d before:%d after:%d\n",here,there,dist[i][there],nextDist);
-                    //printf("%d %d\n",cost,adj[here][j]);
+                    printf("now:%d cost:%d next:%d now->next:%d before:%d after:%d\n",here,cost,there,dist[i][there,nextDist],adj[here][j].second);
                     dist[i][there]=nextDist;
                     pq.push({-nextDist,there});
                 }
@@ -50,7 +121,7 @@ void solv()
 int main()
 {
     scanf("%d%d",&n,&e);
-    //memset(adj,-1,sizeof(adj));
+    //거리배열 초기화
     fill(&dist[0][0],&dist[2][800],99999999);
     for(int i=1;i<=e;i++)
     {
@@ -64,7 +135,8 @@ int main()
     scanf("%d%d",&arr[1],&arr[2]);
     solv();
     ans = min(dist[0][arr[1]]+dist[1][arr[2]]+dist[2][n],dist[0][arr[2]]+dist[2][arr[1]]+dist[1][n]);
-    if(ans>INT_MAX) cout<<"-1";
+    if(ans>=INT_MAX) cout<<"-1";
     else cout<<ans;
     return 0;
 }
+*/
