@@ -41,8 +41,10 @@ int main()
     }
 
     dp[0][0]=1;
+    //i는 전체의 수열
     for(int i=0;i<(1<<n);i++)
     {
+        //k는 나머지
         for(int j=0;j<k;j++)
         {
             for(int t=0;t<n;t++)
