@@ -30,12 +30,15 @@ void solv()
             here=pq.top().second;
             pq.pop();
             if(dist[i][here]<cost) continue;
+            //cout<<arr[i]<<"->"<<now<<" : "<<cost<<" vs "<<dist[i][now]<<"""\n";
             for(int j=0;j<adj[here].size();j++)
             {
                 there=adj[here][j].first;
                 nextDist= cost + adj[here][j].second;
                 if(dist[i][there]>nextDist);
                 {
+                    //printf("%d->%d before:%d after:%d\n",here,there,dist[i][there],nextDist);
+                    //printf("%d %d\n",cost,adj[here][j]);
                     dist[i][there]=nextDist;
                     pq.push({-nextDist,there});
                 }
