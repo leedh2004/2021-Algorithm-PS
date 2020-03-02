@@ -5,38 +5,17 @@
 
 using namespace std;
 
-priority_queue<pair<int,int>> pq;
 int n,p;
+int dp[1<<16];
 int cost[17][17];
-int dist[17];
-int ans=0;
 int now=0;
+string tmp;
 
-int solve()
+//몇개가 켜져있는가?
+int bit_count(int x)
 {
-    if(now==p) return 0;
-    while(!pq.empty()||now<p)
-    {
-        int n_c=-pq.top().first;
-        int n_i=pq.top().second;
-        pq.pop();
-        if(dist[n_i]<n_c) continue;
-        for(int i=1;i<=n;i++)
-        {
-            int next=i;
-            int nextdist = n_c+cost[n_i][i];
-            if(dist[next]>nextdist)
-            {
-                now++;
-                ans=ans+nextdist;
-                //cout<<ans<<"\n";
-                dist[next]=nextdist;
-                pq.push({-nextdist,next});
-            }
-        }
-    }
-    if(now==p)return ans;
-    else return -1;
+    if(x==0) return 0;
+    return x%2+bit_count(x/2);
 }
 
 int main()
@@ -47,17 +26,14 @@ int main()
         for(int j=1;j<=n;j++) cin>>cost[i][j];
     }
     string tmp;cin>>tmp;tmp=" "+tmp;
-    fill(dist,dist+17,INT_MAX);
     for(int i=1;i<=n;i++) 
     {
-        if(tmp[i]=='Y')
-        {
-            now++;
-            dist[i]=0;
-            pq.push({0,i});
-        }
+        if(tmp[i]=='Y') now=now+1;
+        now=now<<1;
     }
+    now=now>>1;
+    printf("%d\n",now);
     cin>>p;
-    cout<<solve();
+    //cout<<solve();
     return 0;
 }
