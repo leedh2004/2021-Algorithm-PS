@@ -94,6 +94,7 @@ do {								//순열
 
 #include<string.h>
 memset(start,value,size);
+memcpy(목적지,원복,길이);
 fill_n(start,size,value);
 s.length(); //길이반환
 s.append("text"); //뒤에 붙임
