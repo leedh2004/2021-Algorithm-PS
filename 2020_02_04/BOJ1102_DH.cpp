@@ -10,7 +10,6 @@ int ans = INF;
 
 int solve(int bit, int j){ // 켜져있는 bit 중 j를 키는데 필요한 최소 cost 반환
     int answer = INF;
-
     for(int i=0; i<n; i++){
         int mask = (1 << i);
         if ( bit & mask ) answer = min(answer, a[n-1-i][j]);
@@ -71,6 +70,7 @@ int main(){
             if( count(i) >= p) ans = min(ans, dp[i]);
         }
     }
+    
     if(ans == INF){
         cout << -1;
     }else{

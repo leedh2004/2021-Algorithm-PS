@@ -12,10 +12,8 @@ int solve(int i, int j){
     if(ret != -1) return ret;
     ret = 0;
     if(i >= j) return ret;
-    
     if(v[i] == v[j]) return ret += solve(i+1, j-1);
     else return ret = min(solve(i+1, j), solve(i, j-1)) + 1;
-    
 }
 
 int main(){
