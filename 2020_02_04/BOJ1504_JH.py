@@ -43,7 +43,7 @@ p1, p2 = map(int, sys.stdin.readline().split())
 [w1, w2] = dijkstra(1, p1, p2)
 [w3, w4] = dijkstra(N, p1, p2)
 [w5, w6] = dijkstra(p1, p2)
-if w5 == -1 or w3 == -1 or w5 == -1:
+if w5 == -1 or w3 == -1 or w1 == -1:
 	error()
 ans = min(w1 + w5 + w4, w2 + w5 + w3)
 print(ans)
