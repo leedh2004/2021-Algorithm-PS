@@ -1,9 +1,6 @@
 #include <iostream>
-
 using namespace std;
-
 int n,k=0,ans=0;
-
 int main()
 {
     cin>>n;
