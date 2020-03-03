@@ -56,7 +56,7 @@ int main()
         //모든 간선들에 대하여 확인
         for(int j=0;j<edge.size();j++)
         {
-            int bit_mask1 = !(1<<(n-edge[j].second.first));
+            int bit_mask1 = ~(1<<(n-edge[j].second.first));
             int bit_mask2 = 1<< (n-edge[j].second.second);
 
             //현재 꺼져있는 발전소에서 시작하는 edge
