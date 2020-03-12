@@ -14,7 +14,6 @@ int indegree[10001];
 bool visited[10001][10001];
 int n,m,s_city,e_city;
 
-/*
 int count(int n_index)
 {
     int c=0;
@@ -25,13 +24,10 @@ int count(int n_index)
         {
             if(dist[n_index]-re_adj[n_index][i].second==dist[re_adj[n_index][i].first]) 
             {
-                if(ck[n_index][re_adj[n_index][i].first])
-                {
-                    c=c+count(re_adj[n_index][i].first);
-                }
+                if(visited[n_index][re_adj[n_index][i].first]) continue;
                 else
                 {
-                    ck[n_index][re_adj[n_index][i].first]=true;
+                    visited[n_index][re_adj[n_index][i].first]=true;
                     c=c+count(re_adj[n_index][i].first)+1;
                 }
                 
@@ -40,7 +36,7 @@ int count(int n_index)
     }
     return c;
 }
-*/
+
 
 void t_sort(int st,int ed)
 {
@@ -60,8 +56,9 @@ void t_sort(int st,int ed)
     }
     printf("%d\n",dist[ed]);
     int ans=0;
+    /*
     q.push(ed);
-    memset(visited,false,sizeof(visited));
+    mem_set(visited,false,sizeof(visited));
     while (!q.empty())
     {
         now=q.front();
@@ -76,7 +73,8 @@ void t_sort(int st,int ed)
             }
         }
     }
-    
+    */
+    ans=count(ed);
     printf("%d",ans);
     //printf("%d",count(ed));
 }
