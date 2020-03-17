@@ -3,7 +3,6 @@
 #include <cstring>
 using namespace std;
 
-
 int dp[101][1001]; // dp[i][x] 는 i번째에서 x 볼륨에 도달할 수 있는지를 나타냄.
 
 int main(){
