@@ -45,7 +45,8 @@
         "xtree": "cpp",
         "set": "cpp",
         "map": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "array": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
