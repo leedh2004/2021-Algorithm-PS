@@ -14,7 +14,7 @@ void make_sosu()
     sosu[2]= false;
     for(long long int i=2;i<=1000000;i++)
     {  
-        for(long long int j=2; (i*j) <=1000000;j++) sosu[i*j]=false;
+        for(long long int j=i; (i*j) <=1000000;j++) sosu[i*j]=false;
     }
     return ;
 }
