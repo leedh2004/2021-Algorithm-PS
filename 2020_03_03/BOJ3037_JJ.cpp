@@ -25,34 +25,3 @@ int main()
     printf("%d",dp[n][c]);
     return 0;
 }
-
-
-/*
-#include <bits/stdc++.h>
-using namespace std;
-int cache[1001][10001] {0,};
-constexpr int MOD = 1'000'000'007;
-
-int main()
-{
-    int n, c;
-    scanf("%d %d", &n, &c);
-
-    int limit = 0;
-    for(int i=2; i<=n; ++i){
-        limit += i-1;
-        cache[i][0] = 1;
-        int j = 1;
-        while (j<=min(10000,limit)){
-            cache[i][j] = (cache[i][j-1]%MOD + cache[i-1][j]%MOD)%MOD;
-            printf("dp[%d][%d] : %d\n",i,j,cache[i][j]);
-            printf("dp[2][2] : %d\n",cache[2][2]);
-            if(j-i>=0) cache[i][j] = ((cache[i][j]%MOD)-(cache[i-1][j-i])+MOD)%MOD;
-            printf("dp[%d][%d] : %d\n",i,j,cache[i][j]);
-            ++j;
-        }
-    }
-
-    printf("%d", cache[n][c]);
-}
-*/

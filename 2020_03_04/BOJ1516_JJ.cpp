@@ -19,14 +19,12 @@ int main()
         return 0;
     }
 
-    //이분탐색
     long long int start=0,end=20000000000;
     while (start<=end)
     {
         mid = (start+end)/2;
         sum=0;
         for(int i=1;i<=m;i++) sum=sum+(mid/m_list[i])+1;
-        //printf("%lld %lld %lld\n ",start,end,sum);
         if(sum>n) end=mid-1;
         else
         {
@@ -35,7 +33,6 @@ int main()
             k=max(k,sum);
         }      
     }
-    //printf("%lld\n%lld\n",t,k);
     if(k==n)
     {
         int last;

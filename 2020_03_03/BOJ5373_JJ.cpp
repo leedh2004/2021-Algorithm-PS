@@ -35,22 +35,60 @@ void turn( int index , char dir)
 void turn_four_side(int index, char dir)
 {
     char tmp[3];
+    //시계방향, 윗면
     if(dir=='+'&&index==0)
     {
+        //오른쪽면 값 저장
         for(int i=0;i<3;i++) tmp[i]=cube[5][0][i];
-        for()
-        for(int i=0;i<3;i++) cube[side_turn[index][0]][i][0]=cube[side_turn[index][3]][2][i];
-        for(int i=0;i<3;i++) cube[side_turn[index][3]][2][i]=cube[side_turn[index][2]][i][2];
-        for(int i=0;i<3;i++) cube[side_turn[index][2]][i][2]=cube[side_turn[index][1]][0][i];
-        for(int i=0;i<3;i++) cube[side_turn[index][1]][0][i]=tmp[i];
+        for(int i=0;i<3;i++) cube[5][0][i]=cube[3][0][i];
+        for(int i=0;i<3;i++) cube[3][0][i]=cube[4][0][i];
+        for(int i=0;i<3;i++) cube[4][0][i]=cube[2][0][i];
+        for(int i=0;i<3;i++) cube[2][0][i]=tmp[i];
     }
-    else
+    else if(dir=='+'&&index==1)
     {
-        for(int i=0;i<3;i++) tmp[i]=cube[side_turn[index][0]][i][0];
-        for(int i=0;i<3;i++) cube[side_turn[index][0]][i][0]=cube[side_turn[index][1]][0][i];
-        for(int i=0;i<3;i++) cube[side_turn[index][1]][0][i]=cube[side_turn[index][2]][i][2];
-        for(int i=0;i<3;i++) cube[side_turn[index][2]][i][2]=cube[side_turn[index][3]][2][i];
-        for(int i=0;i<3;i++) cube[side_turn[index][3]][2][i]=tmp[i];
+       //오른쪽면 값 저장
+        for(int i=0;i<3;i++) tmp[i]=cube[5][2][i];
+        for(int i=0;i<3;i++) cube[5][2][i]=cube[3][2][i];
+        for(int i=0;i<3;i++) cube[3][2][i]=cube[4][2][i];
+        for(int i=0;i<3;i++) cube[4][2][i]=cube[2][2][i];
+        for(int i=0;i<3;i++) cube[2][2][i]=tmp[i];
+    }
+    else if(dir=='+'&&index==2)
+    {
+       //오른쪽면 값 저장
+        for(int i=0;i<3;i++) tmp[i]=cube[5][i][0];
+        for(int i=0;i<3;i++) cube[5][i][0]=cube[0][2][i];
+        for(int i=0;i<3;i++) cube[0][2][i]=cube[4][][2];
+        for(int i=0;i<3;i++) cube[4][3][i]=cube[2][3][i];
+        for(int i=0;i<3;i++) cube[2][3][i]=tmp[i];
+    }
+    else if(dir=='+'&&index==3)
+    {
+       //오른쪽면 값 저장
+        for(int i=0;i<3;i++) tmp[i]=cube[5][3][i];
+        for(int i=0;i<3;i++) cube[5][3][i]=cube[3][3][i];
+        for(int i=0;i<3;i++) cube[3][3][i]=cube[4][3][i];
+        for(int i=0;i<3;i++) cube[4][3][i]=cube[2][3][i];
+        for(int i=0;i<3;i++) cube[2][3][i]=tmp[i];
+    }
+    else if(dir=='+'&&index==4)
+    {
+       //오른쪽면 값 저장
+        for(int i=0;i<3;i++) tmp[i]=cube[5][3][i];
+        for(int i=0;i<3;i++) cube[5][3][i]=cube[3][3][i];
+        for(int i=0;i<3;i++) cube[3][3][i]=cube[4][3][i];
+        for(int i=0;i<3;i++) cube[4][3][i]=cube[2][3][i];
+        for(int i=0;i<3;i++) cube[2][3][i]=tmp[i];
+    }
+    else if(dir=='+'&&index==5)
+    {
+       //오른쪽면 값 저장
+        for(int i=0;i<3;i++) tmp[i]=cube[5][3][i];
+        for(int i=0;i<3;i++) cube[5][3][i]=cube[3][3][i];
+        for(int i=0;i<3;i++) cube[3][3][i]=cube[4][3][i];
+        for(int i=0;i<3;i++) cube[4][3][i]=cube[2][3][i];
+        for(int i=0;i<3;i++) cube[2][3][i]=tmp[i];
     }
 }
 
