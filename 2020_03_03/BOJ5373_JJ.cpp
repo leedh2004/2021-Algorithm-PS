@@ -31,7 +31,7 @@ void turn( int index , char dir)
     }
     memcpy(cube[index],tmp,sizeof(tmp));
 }
-
+/*
 void turn_four_side(int index, char dir)
 {
     char tmp[3];
@@ -91,7 +91,7 @@ void turn_four_side(int index, char dir)
         for(int i=0;i<3;i++) cube[2][3][i]=tmp[i];
     }
 }
-
+*/
 void set_cube()
 {
     for(int i=0;i<6;i++)
