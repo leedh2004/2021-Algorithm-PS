@@ -23,7 +23,6 @@ bool isSosu(int val){
 }
 
 void dfs(int count, int end){
-
     if(count == end){
         int val = 0;
         int t = 0;
@@ -51,7 +50,7 @@ int main(){
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     // visited[0] = visited[1] = 1;
     // for(int i=2; i<=9999999; i++){
-    //     for(int j=i+i; j<=9999999; j=j+i){
+    //     for(int j=i*i; j<=9999999; j=j+i){
     //         visited[j] = 1;
     //     } 
     // }

@@ -19,16 +19,6 @@ int init(int index, int start, int end)
     return tree[index];
 }
 
-/*
-int find(int index, int start, int end, int value)
-{
-    if(start==end) return tree[index];
-    int mid = (start+end)/2;
-    if(tree[index*2+1]<=value) return find(index*2+2,mid+1,end,value);
-    return find(index*2+1,start,mid,value);
-}
-*/
-
 int find_and_update(int index, int start, int end, int value)
 {
     if(start==end) 
@@ -41,9 +31,6 @@ int find_and_update(int index, int start, int end, int value)
     if(tree[index*2+1]<=value) return tree[index]=max(tree[index*2+1], find_and_update(index*2+2,mid+1,end,value));
     else return tree[index]=max(tree[index*2+2], find_and_update(index*2+1,start,mid,value));
 }
-
-
-
 
 int main()
 {
