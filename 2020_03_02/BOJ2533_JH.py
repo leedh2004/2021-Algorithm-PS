@@ -3,6 +3,8 @@ import sys
 sys.setrecursionlimit(10**6)
 
 def dfs(index):
+	if visited[index] == 1:
+		return 0
 	visited[index] = 1
 	dp[index][0] = 0
 	dp[index][1] = 1
