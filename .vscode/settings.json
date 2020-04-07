@@ -47,7 +47,8 @@
         "map": "cpp",
         "numeric": "cpp",
         "array": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "list": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
