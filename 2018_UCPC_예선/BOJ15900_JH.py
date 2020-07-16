@@ -1,18 +1,42 @@
-import math
+from collections import deque
 import sys
 
+graph = {}
+
 n = int(sys.stdin.readline())
+for i in range(n-1):
+	a, b = map(int, sys.stdin.readline().split())
 
-chk = n
-ans = n + 1
-cnt = 0
+	if a not in graph:
+		graph[a] = [b]
+	else :
+		graph[a].append(b)
+	
+	if b not in graph:
+		graph[b] = [a]
+	else :
+		graph[b].append(a)
 
-for i in range(2, math.ceil(math.sqrt(n))+1):
-	div = n / i
-	ans += (chk - math.ceil(div)) * i + math.ceil(n / i)
-	cnt += (chk - math.ceil(div)) + 1
-	chk = math.ceil(div)
-print(ans)
-print(n - cnt)
-ans -= (n - cnt) * math.ceil(math.sqrt(n))
-print(ans)
+queue = deque([[1, 0]])
+ans = 0
+visited = [0] * (n+1)
+
+while queue:
+	bf, lev = queue.popleft()
+	visited[bf] = 1
+	
+	chk = 0
+	for i in graph[bf]:
+		if visited[i] == 1:
+			continue
+
+		queue.append([i, lev+1])
+		chk += 1
+
+	if chk == 0:
+		ans += lev
+
+if ans % 2 == 0:
+	print("No")
+else : 
+	print("Yes")
