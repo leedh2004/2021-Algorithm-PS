@@ -1,18 +1,14 @@
 #include <iostream>
 using namespace std;
 typedef long long ll;
-
 int main(){
-
     ll n;
     cin >> n;
     ll cur = 1;
-    
     ll ans = n;
     n--;
     ll before = -1;
     ll bm = -1;
-
     while(cur <= n){
         ll val = n / cur;
         ll m = n % cur;

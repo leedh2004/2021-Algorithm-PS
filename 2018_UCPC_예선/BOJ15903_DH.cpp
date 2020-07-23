@@ -5,7 +5,6 @@
 using namespace std;
 typedef unsigned long long ll;
 priority_queue<ll, vector<ll>, greater<ll> > pq;
-
 int main(){
     int n, m;
     cin >> n >> m;
