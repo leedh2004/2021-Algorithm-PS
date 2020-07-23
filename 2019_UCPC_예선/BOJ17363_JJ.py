@@ -30,8 +30,6 @@ for i in range(x):
 for i in range(x):
     for j in range(y):
         for k in range(len(rule)):
-            #print(o_d[i][j]) 
-            #print(rule[k][0])
             if o_d[i][j] == rule[k][0]:
                 o_d[i][j] = rule[k][1]
                 break
