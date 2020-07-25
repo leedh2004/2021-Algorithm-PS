@@ -30,14 +30,14 @@ void make_one_way(int node){
 // 문제해결
 void solve(int node){
     // D-tree : 해당노드의 자식들의 자식들의 수의 합 
-    // G-tree : 
+    // G-tree : 자식의 자식들 중에서 2개를 뽑는 조합
     for(int i=0;i<adj_one_way[node].size();i++){
         int child_index = adj_one_way[node][i];
         for(int j=0;j<adj_one_way[child_index].size();j++){
             int child_child_index = adj_one_way[child_index][j];
             D_num = D_num + adj_one_way[child_child_index].size();   
         }
-        G_num = G_num + (adj_one_way[child_index].size() * (adj_one_way[child_index].size()-1)) / 2;
+        if(adj_one_way[child_index].size()>=2) G_num = G_num + (adj_one_way[child_index].size() * (adj_one_way[child_index].size()-1)) / 2;
     }
     for(int i=0;i<adj_one_way[node].size();i++) solve(adj_one_way[node][i]);
 }
