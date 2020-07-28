@@ -28,10 +28,10 @@ void solve(int node){
         // cout<<"child_index : "<<child_index<<"\n";
         for(int j=0;j<degree[child_index];j++){
             int child_child_index = adj[child_index][j];
-            if(node == child_child_index) continue;
+            if(degree[child_child_index]==1 || node == child_child_index) continue;
             // cout<<"child_child_index : "<<child_child_index<<"\n";
             // cout<<"child_child_index size : "<<adj[child_child_index].size()<<"\n";
-            if(degree[child_child_index]>1) D_num = D_num + (degree[child_child_index]-1);   
+            D_num = D_num + (degree[child_child_index]-1);   
         }
     }
     for(int i=0;i<degree[node];i++) {

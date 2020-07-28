@@ -11,10 +11,11 @@ typedef long long int ll;
 
 int t,n,dx,dy;
 ll ans = 0;
-bool obstacle[402][402];
-ll dp[402][402][200];
+bool obstacle[401][401];
+int dp[401][401][201];
+bool visited[401][401][202];
 int d[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
-int mod = 1000000009;
+int mod = 1000000007;
 
 bool is_in(int nx,int ny){
     return (0<=nx && nx < 401 && 0<=ny && ny<401);
@@ -27,29 +28,33 @@ int get_dis(int x,int y, int nx, int ny){
 
 void bfs(){
     queue<pair<pair<int,int>,int> > q;
-    q.push(make_pair(make_pair(201,201),0));
+    q.push(make_pair(make_pair(200,200),0));
     while (!q.empty())
     {
         pair<int,int> now = q.front().first;
         int dis = q.front().second;
         pair<int,int> next;
         q.pop();
+        
+        //순서대로 나오기 때문에, t를 넘어가는 distance가 나오면 break한다.
+        if(dis>=t) break;
 
-        if(dis>t) continue;
+        //이미 도착한 경우 건너뛴다.
+        if(now.first == dx && now.second == dy) continue;
 
-        bool flag = false;
-        if(dp[now.first][now.second][dis]==0) flag =true;
         for(int i=0;i<4;i++){
             //이동 좌표
             next.first = now.first + d[i][0];
             next.second = now.second + d[i][1];
 
-            //값대입
-            if(dis!=0 && flag)  dp[now.first][now.second][dis] =  (dp[now.first][now.second][dis] + dp[next.first][next.second][dis-1])%mod;
-
             //큐삽입
-            if(is_in(next.first,next.second) && obstacle[next.first][next.second]==0) {
-                if(get_dis(dx,dy,next.first,next.second)<= (t-dis)) q.push(make_pair(next,dis+1));
+            if(is_in(next.first,next.second)&& obstacle[next.first][next.second]==0&& get_dis(dx,dy,next.first,next.second)<= (t-dis)) {
+                
+                if(!visited[next.first][next.second][dis+1]){
+                    visited[next.first][next.second][dis+1] = 1;
+                    q.push(make_pair(next,dis+1));
+                }
+                dp[next.first][next.second][dis+1] = (dp[next.first][next.second][dis+1] + dp[now.first][now.second][dis])%mod;
             }
         }
         //printf("dp[%d][%d][%d] : %lld \n", now.first,now.second,dis,dp[now.first][now.second][dis]);
@@ -75,19 +80,21 @@ int main(){
 
     //도착 장소
     scanf("%d%d",&dx,&dy);
-    dx = dx - nx + 201;
-    dy = dy - ny + 201;
+    dx = dx - nx + 200;
+    dy = dy - ny + 200;
 
     //장애물 입력
     scanf("%d",&n);
     for(int i=0;i<n;i++){
         scanf("%d%d",&tmpx,&tmpy);
-        if (check(nx,ny,tmpx,tmpy)){
-            //원점 이동 200,200이 항상 시작위치
-            obstacle[tmpx-nx+201][tmpy-ny+201] = 1;
+        tmpx = tmpx - nx + 200;
+        tmpy = tmpy - ny + 200;
+        if (is_in(tmpx,tmpy)){
+            obstacle[tmpx][tmpy] = 1;
         }
     }
-    dp[201][201][0] = 1;
+
+    dp[200][200][0] = 1;
     bfs();
     for(int i=0;i<=t;i++) {
         ans = (ans + dp[dx][dy][i])%mod;
