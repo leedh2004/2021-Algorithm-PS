@@ -1,4 +1,6 @@
 ## Ignore .exe File by DH ##
+*
+!*.py
+!*.cpp
+!*.c++
 
-*.exe
-DOHYUN
