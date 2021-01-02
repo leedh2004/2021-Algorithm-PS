@@ -8,7 +8,7 @@ typedef struct Node {
 
 Node * root;
 
-bool addString(Node* node, string s, int idx, int len, bool created){
+bool addString(Node* node, string& s, int idx, int len, bool created){
     if (len == idx) {
         if(!created) return false;
         else {

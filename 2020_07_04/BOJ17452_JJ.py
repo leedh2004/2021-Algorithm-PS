@@ -16,7 +16,6 @@ for i in range(n):
         front[alpha_dict[word[j]]].append([j,i])
         back[alpha_dict[word[j]]].append([length-j-1,i])
 
-
 ans = 50
 for i in range(26):
     if front[i] and back[i]:

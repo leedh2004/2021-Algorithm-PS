@@ -37,11 +37,6 @@ int findCnt(Node* node, string& s, int idx){
 //liisryanilio
 //12
 
-//dp[0] = 1
-//dp[1] = findCnt(o) * dp[0];
-//dp[2] = findCnt(io) * dp[0] + findCnt(i) * dp[1]
-//dp[3] = findCnt(lio) + dp[0] + findCnt(li) * dp[1] + findCnt(l) * dp[2]  
-
 int dfs(int n){
     if(dp[n] != -1) return dp[n];
     if(n == 0) return dp[n] = 1;
@@ -52,7 +47,7 @@ int dfs(int n){
             int val = findCnt(root, s, 0);
             if(val == 0) continue;
             dp[n] += ( dfs(i) * val ) % MOD;
-            //cout <<"dp[" << n << "]= " << dp[n] << " " << s << " + " << "dp[" << i << "]\n";
+            cout <<"dp[" << n << "]= " << dp[n] << " " << s << " + " << "dp[" << i << "]\n";
         }
     }
     return dp[n];
@@ -72,6 +67,34 @@ int main(){
     }
     cin >> str;
     length = str.size();
-    cout << dfs(length);
+    //dp[0] = 1
+    //dp[1] = findCnt(o) * dp[0];
+    //dp[2] = findCnt(io) * dp[0] + findCnt(i) * dp[1]
+    //dp[3] = findCnt(lio) + dp[0] + findCnt(li) * dp[1] + findCnt(l) * dp[2]  
+
+    dp[0] = 1;
+    //dp[12] = liisryanilio
+    //dp[11] = iisryanilio
+    //dp[10] = isryanilio
+    //dp[2] = io
+    //dp[1] = o
+
+    for(int i=1; i<=length; i++){
+        Node * here = root;
+        dp[i] = 0;
+        for(int j=i-1; j>=0; j--){
+            //length 12, i=12, j = 11 str[12-11+1]
+            int val = str[length-j-1] - 'a';
+            if(here->next[val]){
+                dp[i] += (here->next[val]->cnt * dp[j]) % MOD; //
+            }else {
+                break;
+            }
+            here = here->next[val];
+        }
+        //cout << i << " " << dp[i] << endl;
+    }
+
+    cout << dp[length];
     return 0;
 }

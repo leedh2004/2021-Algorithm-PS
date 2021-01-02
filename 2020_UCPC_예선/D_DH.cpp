@@ -3,6 +3,7 @@
 #include <utility>
 #include <map>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 typedef long long ll;
@@ -15,11 +16,11 @@ ll d; // ㄷ
 ll j; // ㅈ
 
 void dfs(int here, int chk){
-    //cout << here << " " << chk << endl;
     if(chk == 4){
         d++;
     }
-    for(int i=0; i<v[here].size(); i++){
+    int size = v[here].size();
+    for(int i=0; i<size; i++){
         int next = v[here][i];
         if(!visited[next]){
             visited[next] = 1;
@@ -43,12 +44,22 @@ int main(){
     }
 
     for(int i=1; i<=n; i++){
-        visited[i] = 1;
-        dfs(i, 1);
-        visited[i] = 0;
+        // visited[i] = 1;
+        // dfs(i, 1);
+        // visited[i] = 0;
         ll val = indegree[i];
-        j += val * (val-1) * (val-2) / 6;
+         j += val * (val-1) * (val-2) / 6;
+        int size = v[i].size();
+        for(int j=0; j<size; j++){
+            ll next = v[i][j];
+            ll a = indegree[i];
+            ll b = indegree[next];
+            if( a >= 2 && b >= 2){
+                d += (a-1) * (b-1);
+            }
+        }
     }
+    
     d /= 2;
     j *= 3;
     //cout << d << " " << j;
